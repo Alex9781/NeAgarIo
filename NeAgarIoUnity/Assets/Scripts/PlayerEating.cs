@@ -28,9 +28,9 @@ public class PlayerEating : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float weightDecay = -Time.deltaTime * _weight.GetWeight() / 100; 
-        _weight.AddWeight(weightDecay);
-        StartCoroutine(ChangeScale());
+        //float weightDecay = -Time.deltaTime * _weight.GetWeight() / 100; 
+        //_weight.AddWeight(weightDecay);
+        //StartCoroutine(ChangeScale());
     }
 
     private IEnumerator ChangeScale()

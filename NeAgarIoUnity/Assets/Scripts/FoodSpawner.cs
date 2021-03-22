@@ -21,6 +21,4 @@ public class FoodSpawner : MonoBehaviour
             spawned.GetComponent<SpriteRenderer>().color = Colors[Random.Range(0, Colors.Length)];
         }
     }
-
-
 }
