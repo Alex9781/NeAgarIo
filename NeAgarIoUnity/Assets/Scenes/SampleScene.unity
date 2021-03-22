@@ -296,6 +296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49957974ba7d4e4c98624f38cccd252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   Food: {fileID: 4275674725957214622, guid: 8157f4cfb8ca49b45870211cf8c00d2e, type: 3}
   FoodCount: 1000
   Colors:
@@ -370,7 +372,8 @@ MonoBehaviour:
   playerPrefab: {fileID: 2338539493896725717, guid: c40b8d5953d8f2f43b084da1cb765621, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 4275674725957214622, guid: 8157f4cfb8ca49b45870211cf8c00d2e, type: 3}
 --- !u!114 &1471499060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,7 +407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1940247309
 MonoBehaviour:
   m_ObjectHideFlags: 0

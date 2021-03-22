@@ -1,8 +1,9 @@
 using UnityEngine;
+using Mirror;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
     public Camera PlayerCamera;
 
@@ -19,18 +20,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 cursorPos = PlayerCamera.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 vectorDelta = cursorPos - new Vector2(
-            this.gameObject.transform.position.x,
-            this.gameObject.transform.position.y);
+        if (this.isLocalPlayer)
+        {
+            Vector2 cursorPos = PlayerCamera.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 vectorDelta = cursorPos - new Vector2(
+                this.gameObject.transform.position.x,
+                this.gameObject.transform.position.y);
 
-        _rb.velocity = new Vector2(
-            Mathf.Clamp(vectorDelta.x, -Speed, Speed),
-            Mathf.Clamp(vectorDelta.y, -Speed, Speed)).normalized * Speed;
+            _rb.velocity = new Vector2(
+                Mathf.Clamp(vectorDelta.x, -Speed, Speed),
+                Mathf.Clamp(vectorDelta.y, -Speed, Speed)).normalized * Speed;
 
-        this.transform.position = new Vector3(
-            Mathf.Clamp(this.transform.position.x, -AllowedRadius.x, AllowedRadius.x),
-            Mathf.Clamp(this.transform.position.y, -AllowedRadius.y, AllowedRadius.y),
-            0);
+            this.transform.position = new Vector3(
+                Mathf.Clamp(this.transform.position.x, -AllowedRadius.x, AllowedRadius.x),
+                Mathf.Clamp(this.transform.position.y, -AllowedRadius.y, AllowedRadius.y),
+                0);
+        }
     }
 }

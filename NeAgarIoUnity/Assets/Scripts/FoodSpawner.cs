@@ -1,7 +1,8 @@
 using UnityEngine;
+using Mirror;
 
 [RequireComponent(typeof(Collider2D))]
-public class FoodSpawner : MonoBehaviour
+public class FoodSpawner : NetworkBehaviour
 {
     [SerializeField] private GameObject Food;
     [SerializeField] private int FoodCount;
