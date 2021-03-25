@@ -1,6 +1,7 @@
 using UnityEngine;
+using Mirror;
 
-public class Weight : MonoBehaviour
+public class Weight : NetworkBehaviour
 {
     [SerializeField] private float ObjectWeight;
 

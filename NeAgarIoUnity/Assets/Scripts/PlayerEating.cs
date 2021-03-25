@@ -1,8 +1,9 @@
 using UnityEngine;
 using System.Collections;
+using Mirror;
 
 [RequireComponent(typeof(Weight))]
-public class PlayerEating : MonoBehaviour
+public class PlayerEating : NetworkBehaviour
 {
     [SerializeField] private Weight _weight;
     private float cameraSizeOffset;
@@ -18,7 +19,7 @@ public class PlayerEating : MonoBehaviour
         {
             if (_weight.GetWeight() > _w.GetWeight())
             {
-                _weight.AddWeight(_w.GetWeight());
+                _weight.AddWeight(_w.GetWeight() / 10);
                 StopAllCoroutines();
                 StartCoroutine(ChangeScale());
                 Destroy(collision.gameObject);
