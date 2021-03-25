@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/WaitingScene.unity
     guid: 2b3509fb6c16b5f4099584a359c9da3b
   - enabled: 1

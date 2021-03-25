@@ -7,6 +7,7 @@ public class FoodSpawner : NetworkBehaviour
     [SerializeField] private GameObject Food;
     [SerializeField] private int FoodCount;
     [SerializeField] private Color[] Colors;
+    [SerializeField] private GameObject Foods;
 
     private Vector2 SpawnRadius = GameGlobalSettings.GameField;
 
@@ -31,5 +32,8 @@ public class FoodSpawner : NetworkBehaviour
 
         GameObject spawned = Instantiate(Food, spawnPoint, Quaternion.identity);
         spawned.GetComponent<SpriteRenderer>().color = Colors[Random.Range(0, Colors.Length)];
+
+        spawned.GetComponent<SpriteRenderer>().color = Colors[Random.Range(0, Colors.Length)];
+        spawned.gameObject.transform.parent = Foods.transform;
     }
 }

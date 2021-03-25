@@ -14,28 +14,37 @@ public class PlayerMovement : NetworkBehaviour
 
     private void Start()
     {
-        PlayerCamera = this.gameObject.GetComponentInChildren<Camera>();
+        //PlayerCamera = this.gameObject.GetComponentInChildren<Camera>();
         this.gameObject.TryGetComponent<Rigidbody2D>(out _rb);
+    }
+
+    public override void OnStartLocalPlayer()
+    {
+        Camera.main.transform.SetParent(transform);
+        Camera.main.transform.localPosition = new Vector3(0, 0, -10);
+        PlayerCamera = Camera.main;
     }
 
     private void FixedUpdate()
     {
-        if (this.isLocalPlayer)
-        {
-            Vector2 cursorPos = PlayerCamera.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 vectorDelta = cursorPos - new Vector2(
-                this.gameObject.transform.position.x,
-                this.gameObject.transform.position.y);
+        if (!isLocalPlayer) { return; }
 
-            _rb.velocity = new Vector2(
-                Mathf.Clamp(vectorDelta.x, -Speed, Speed),
-                Mathf.Clamp(vectorDelta.y, -Speed, Speed)).normalized * Speed;
+        if (PlayerCamera == null) PlayerCamera = Camera.main;
 
-            this.transform.position = new Vector3(
-                Mathf.Clamp(this.transform.position.x, -AllowedRadius.x, AllowedRadius.x),
-                Mathf.Clamp(this.transform.position.y, -AllowedRadius.y, AllowedRadius.y),
-                0);
-        }
+        Vector2 cursorPos = PlayerCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 vectorDelta = cursorPos - new Vector2(
+            this.gameObject.transform.position.x,
+            this.gameObject.transform.position.y);
+
+        _rb.velocity = new Vector2(
+            Mathf.Clamp(vectorDelta.x, -Speed, Speed),
+            Mathf.Clamp(vectorDelta.y, -Speed, Speed)).normalized * Speed;
+
+        this.transform.position = new Vector3(
+            Mathf.Clamp(this.transform.position.x, -AllowedRadius.x, AllowedRadius.x),
+            Mathf.Clamp(this.transform.position.y, -AllowedRadius.y, AllowedRadius.y),
+            0);
+
     }
 
 }
