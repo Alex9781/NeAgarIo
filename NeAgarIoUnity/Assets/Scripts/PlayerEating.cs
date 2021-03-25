@@ -23,6 +23,12 @@ public class PlayerEating : NetworkBehaviour
                 StopAllCoroutines();
                 StartCoroutine(ChangeScale());
                 Destroy(collision.gameObject);
+
+                if (collision.TryGetComponent(out Food _))
+                {
+                    FoodSpawner f = FindObjectOfType<FoodSpawner>();
+                    f.SpawnFoodOnEat();
+                }
             }
         }
     }
