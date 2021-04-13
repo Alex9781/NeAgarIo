@@ -11,7 +11,7 @@ public class ExternalListener : MonoBehaviour
     private void Start()
     {
         tcpClient = new TcpClient();
-        tcpClient.Connect("localhost", 69696);
+        tcpClient.Connect("localhost", 6969);
         tcpClient.ReceiveTimeout = -1;
 
         if (tcpClient.Connected)
@@ -25,7 +25,20 @@ public class ExternalListener : MonoBehaviour
             PlayerId = temp.Substring(0, temp.IndexOf(" "));
             PlayerName = temp.Substring(temp.IndexOf(" ") + 1, temp.Length - 1 - temp.IndexOf(" "));
 
+            print(PlayerId + PlayerName);
+
             UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+        }
+    }
+
+    public static void SendResults(string results)
+    {
+        if (tcpClient.Connected)
+        {
+            byte[] _temp = Encoding.Unicode.GetBytes(results);
+
+            NetworkStream ns = tcpClient.GetStream();
+            ns.Write(_temp, 0, _temp.Length);
         }
     }
 }

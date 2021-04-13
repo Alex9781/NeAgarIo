@@ -11,12 +11,38 @@ public class Player : NetworkBehaviour
     [SerializeField] private Rigidbody2D PlayerRigidbody2D = null;
     [SerializeField] private Camera PlayerCamera = null;
     [SerializeField] private Weight Weight = null;
+    [SerializeField] private TextMesh playerNameText = null;
+    [SerializeField] private GameObject DeathCanvas = null;
 
     [Header("Settings")]
     [SerializeField] private float Speed = 1;
 
     private Vector2 AllowedRadius = GameGlobalSettings.GameField;
     private float cameraSizeOffset;
+    private bool isAlive = true;
+
+    [SyncVar(hook = nameof(OnNameChanged))]
+    private string playerName;
+
+    void OnNameChanged(string _Old, string _New)
+    {
+        playerNameText.text = playerName;
+    }
+
+    [Command]
+    public void CmdSetupPlayer(string _name)
+    {
+        playerName = _name;
+    }
+
+    [Command]
+    public void ChangePlayerPosition()
+    {
+        this.transform.position = new Vector3(
+            Random.Range(-GameGlobalSettings.GameField.x, GameGlobalSettings.GameField.x),
+            Random.Range(-GameGlobalSettings.GameField.y, GameGlobalSettings.GameField.y),
+            0);
+    }
 
     public override void OnStartAuthority()
     {
@@ -37,29 +63,36 @@ public class Player : NetworkBehaviour
         PlayerCamera.transform.localPosition = new Vector3(0, 0, -10);
 
         cameraSizeOffset = PlayerCamera.orthographicSize;
+
+        playerName = ExternalListener.PlayerName;
+        CmdSetupPlayer(playerName);
+        playerNameText.text = playerName;
+
+        ChangePlayerPosition();
     }
 
     private void FixedUpdate()
     {
         if (!hasAuthority) { return; }
+        if (isAlive)
+        {
+            Vector2 cursorPos = PlayerCamera.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 vectorDelta = cursorPos - new Vector2(
+                this.gameObject.transform.position.x,
+                this.gameObject.transform.position.y);
 
-        //disabled for testing
-        //Vector2 cursorPos = PlayerCamera.ScreenToWorldPoint(Input.mousePosition);
-        //Vector2 vectorDelta = cursorPos - new Vector2(
-        //    this.gameObject.transform.position.x,
-        //    this.gameObject.transform.position.y);
+            PlayerRigidbody2D.velocity = new Vector2(
+                Mathf.Clamp(vectorDelta.x, -Speed, Speed),
+                Mathf.Clamp(vectorDelta.y, -Speed, Speed)).normalized * Speed;
 
-        //PlayerRigidbody2D.velocity = new Vector2(
-        //    Mathf.Clamp(vectorDelta.x, -Speed, Speed),
-        //    Mathf.Clamp(vectorDelta.y, -Speed, Speed)).normalized * Speed;
+            this.transform.position = new Vector3(
+                Mathf.Clamp(this.transform.position.x, -AllowedRadius.x, AllowedRadius.x),
+                Mathf.Clamp(this.transform.position.y, -AllowedRadius.y, AllowedRadius.y),
+                0);
 
-        this.transform.position = new Vector3(
-            Mathf.Clamp(this.transform.position.x, -AllowedRadius.x, AllowedRadius.x),
-            Mathf.Clamp(this.transform.position.y, -AllowedRadius.y, AllowedRadius.y),
-            0);
-
-        Vector2 v2 = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        PlayerRigidbody2D.velocity = v2.normalized * Speed;
+            //Vector2 v2 = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            //PlayerRigidbody2D.velocity = v2.normalized * Speed;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -71,7 +104,14 @@ public class Player : NetworkBehaviour
                 Weight.AddWeight(_w.GetWeight() / 10);
                 StopAllCoroutines();
                 StartCoroutine(ChangeScale());
-                Destroy(collision.gameObject);
+                if (collision.TryGetComponent(out Player _p))
+                {
+                    _p.Deth();
+                }
+                else
+                {
+                    Destroy(collision.gameObject);
+                }
 
                 if (collision.TryGetComponent(out Food _))
                 {
@@ -99,5 +139,33 @@ public class Player : NetworkBehaviour
 
             yield return null;
         }
+    }
+
+    public void Deth()
+    {
+        isAlive = false;
+        PlayerRigidbody2D.velocity = Vector3.zero;
+
+        this.GetComponent<Collider2D>().enabled = false;
+        this.GetComponent<SpriteRenderer>().enabled = false;
+        playerNameText.GetComponent<MeshRenderer>().enabled = false;
+        DeathCanvas.SetActive(true);
+
+        ExternalListener.SendResults(PlayerId + " " + this.GetComponent<Weight>().GetWeight());
+    }
+
+    public void Retry()
+    {
+        isAlive = true;
+
+        ChangePlayerPosition();
+
+        this.GetComponent<Collider2D>().enabled = true;
+        this.GetComponent<SpriteRenderer>().enabled = true;
+        playerNameText.GetComponent<MeshRenderer>().enabled = true;
+        DeathCanvas.SetActive(false);
+
+        Weight.ResetWeight();
+        this.gameObject.transform.localScale = Vector3.one;
     }
 }

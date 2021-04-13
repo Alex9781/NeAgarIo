@@ -14,4 +14,9 @@ public class Weight : NetworkBehaviour
     {
         ObjectWeight += weight;
     }
+
+    public void ResetWeight()
+    {
+        ObjectWeight = 1;
+    }
 }

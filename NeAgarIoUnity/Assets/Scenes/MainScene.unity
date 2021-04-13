@@ -170,12 +170,6 @@ MonoBehaviour:
   Food: {fileID: 4275674725957214622, guid: 8157f4cfb8ca49b45870211cf8c00d2e, type: 3}
   Foods: {fileID: 777616943}
   FoodCount: 1000
-  Colors:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0.9566649, g: 1, b: 0, a: 1}
-  - {r: 0.26244187, g: 1, b: 0, a: 1}
-  - {r: 0, g: 1, b: 0.890424, a: 1}
-  - {r: 0, g: 0.010499954, b: 1, a: 1}
 --- !u!114 &95151574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,6 +293,8 @@ GameObject:
   m_Component:
   - component: {fileID: 931876027}
   - component: {fileID: 931876030}
+  - component: {fileID: 931876032}
+  - component: {fileID: 931876031}
   - component: {fileID: 931876029}
   - component: {fileID: 931876028}
   m_Layer: 0
@@ -329,7 +325,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931876026}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
   m_Name: 
@@ -392,6 +388,32 @@ MonoBehaviour:
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 4275674725957214622, guid: 8157f4cfb8ca49b45870211cf8c00d2e, type: 3}
+--- !u!114 &931876031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931876026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419f3794270a92749bff5e98d381d37c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &931876032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931876026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c8467a37bf444428c70c32c8c3a670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
 --- !u!1 &1219664382
 GameObject:
   m_ObjectHideFlags: 0
