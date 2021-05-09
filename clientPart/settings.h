@@ -18,6 +18,7 @@ public:
     ~settings();
 signals:
     void startGameClick();
+    void Nextwindows();
 
 private slots:
     void on_startGame_clicked();

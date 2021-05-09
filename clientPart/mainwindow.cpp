@@ -171,7 +171,7 @@ void MainWindow::gotError(QAbstractSocket::SocketError err)
 
 void MainWindow::on_pushButton_connect_clicked()
 {
-//    client->connect2host();
+
 }
 
 void MainWindow::on_pushButton_send_clicked()

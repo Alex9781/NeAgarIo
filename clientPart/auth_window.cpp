@@ -6,6 +6,8 @@ auth_window::auth_window(QWidget *parent) :                                 //р
     ui(new Ui::auth_window)
 {
     ui->setupUi(this);                                                      //вызов функции размещения GUI
+    set = new settings();
+    connect(set, &auth_window::show, this, &auth_window::login_button_clicked);
 }
 
 auth_window::~auth_window()                                                 //реализация деструктора
@@ -35,7 +37,17 @@ void auth_window::on_lineEdit_2_textEdited(const QString &arg1)
 }
 void auth_window::on_loginPushButton_clicked()
 {
-        emit login_button_clicked();
+        QString login = ui->login->text();
+        QString pass = ui->pass->text();
+        if(login == "123" && pass == "321")
+        {
+            set->show();
+            this->close();
+        }
+
+        else {
+            QMessageBox::information(this,"Упс","Неправильный логин или пароль");
+        }
 }
 
 void auth_window::on_registerPushButton_2_clicked()

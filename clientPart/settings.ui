@@ -26,7 +26,7 @@
     <item>
      <widget class="QLabel" name="Name">
       <property name="text">
-       <string>Name</string>
+       <string>Имя</string>
       </property>
      </widget>
     </item>
@@ -36,7 +36,7 @@
     <item>
      <widget class="QLabel" name="skin">
       <property name="text">
-       <string>Skin</string>
+       <string>Скин</string>
       </property>
      </widget>
     </item>
@@ -46,7 +46,7 @@
     <item>
      <widget class="QPushButton" name="startGame">
       <property name="text">
-       <string>PushButton</string>
+       <string>Start</string>
       </property>
      </widget>
     </item>

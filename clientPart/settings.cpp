@@ -13,6 +13,7 @@ settings::~settings()
     delete ui;
 }
 
+
 QString settings::getSkin()
 {
     return settings::m_skin;
