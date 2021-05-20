@@ -36,8 +36,6 @@ private slots:
 
     void on_back_clicked();
 
-
-
 private:
     Ui::reg_window *ui;
     QString m_userName;

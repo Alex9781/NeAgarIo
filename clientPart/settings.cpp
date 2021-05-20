@@ -13,10 +13,10 @@ settings::~settings()
     delete ui;
 }
 
-
-QString settings::getSkin()
+QString settings::getLogin()
 {
-    return settings::m_skin;
+    auth_window p;
+    return p.getLogin();
 }
 
 QString settings::getName()
@@ -34,7 +34,4 @@ void settings::on_lineName_textEdited(const QString &arg1)
     m_userName = arg1;
 }
 
-void settings::on_lineSkin_textEdited(const QString &arg1)
-{
-     m_skin = arg1;
-}
+

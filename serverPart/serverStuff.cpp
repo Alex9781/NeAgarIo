@@ -70,25 +70,43 @@ void ServerStuff::readClient(){
 }
 //добавляем юзера в базу
 void ServerStuff::addNewClient(QString login,QString pass){
-    //TODO
-       //добавить нового клиента с заданным логином и паролем
+         QSqlQuery q;
+
+         q.prepare("INSERT INTO accounts (login, password) VALUES (:log, :pass)");
+         q.bindValue(":log", login);
+         q.bindValue(":pass", pass);
+         q.exec();
+
          qDebug() << "new client was added to database";
 }
 // проверяем данные пароля и логина с данными из базы данных
 bool ServerStuff::checkLogIn(QString login,QString pass){
-//TODO
-//сделать запрос к базе данных и узнать если клиент с таким логином и паролем
 
+    QSqlQuery q;
 
-//заглушка
-if(login == "1" && pass == "2"){
-    qDebug() << "correct login and pass";
-    return true;
-}
-else{
-     qDebug() << "uncorrect login and pass";
-    return false;
-}
+    q.prepare("SELECT * FROM accounts WHERE login = :log AND password = :pass");
+    q.bindValue(":log", login);
+    q.bindValue(":pass", pass);
+    if(!q.exec())
+    {
+        qDebug() <<"error";
+    }
+    else
+    {
+        q.first();
+        QString login1 = q.value(0).toString();
+        QString pass1 = q.value(1).toString();
+        qDebug() << login1 << pass1;
+        if (q.first())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }
 
 // удаляем клиента

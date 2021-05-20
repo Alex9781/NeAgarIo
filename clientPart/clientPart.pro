@@ -1,4 +1,5 @@
 QT += core gui network widgets
+QT += sql
 
 TEMPLATE = app
 TARGET = client
