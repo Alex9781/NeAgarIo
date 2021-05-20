@@ -1,12 +1,13 @@
 #include <QApplication>
 #include <QTextCodec>
 #include "mainwindow.h"
+#include <QProcess>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    //QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
+    QProcess::startDetached();
 
     MainWindow w;
     w.display();

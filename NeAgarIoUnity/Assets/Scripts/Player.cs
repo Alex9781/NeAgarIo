@@ -4,7 +4,6 @@ using System.Collections;
 
 public class Player : NetworkBehaviour
 {
-    public string PlayerId { get; private set; }
     public string PlayerName { get; private set; }
 
     [Header("Dependencies")]
@@ -64,7 +63,6 @@ public class Player : NetworkBehaviour
     {
         base.OnStartAuthority();
 
-        PlayerId = ExternalListener.PlayerId;
         PlayerName = ExternalListener.PlayerName;
 
         PlayerCamera.gameObject.SetActive(true);
@@ -170,7 +168,7 @@ public class Player : NetworkBehaviour
         if (hasAuthority)
             DeathCanvas.SetActive(true);
 
-        ExternalListener.SendResults(PlayerId + " " + this.GetComponent<Weight>().GetWeight());
+        ExternalListener.SendResults(this.GetComponent<Weight>().GetWeight().ToString());
     }
 
     public void Retry()
