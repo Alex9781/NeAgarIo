@@ -2,6 +2,7 @@
 #define SETTINGS_H
 
 #include <QWidget>
+#include <auth_window.h>
 
 namespace Ui {
 class settings;
@@ -14,23 +15,21 @@ class settings : public QWidget
 public:
     explicit settings(QWidget *parent = nullptr);
     QString getName();
-    QString getSkin();
+    QString getLogin();
     ~settings();
 signals:
     void startGameClick();
-    void Nextwindows();
 
 private slots:
     void on_startGame_clicked();
 
     void on_lineName_textEdited(const QString &arg1);
 
-    void on_lineSkin_textEdited(const QString &arg1);
 
 private:
     Ui::settings *ui;
     QString m_userName;
-    QString m_skin;
+    QString m_login;
 };
 
 #endif // SETTINGS_H

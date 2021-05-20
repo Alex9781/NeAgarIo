@@ -5,6 +5,9 @@
 #include <QTcpSocket>
 #include <QDataStream>
 #include <QList>
+#include <QtSql/QSqlDatabase>
+#include <QtSql/QSqlQuery>
+#include <QDebug>
 
 class ServerStuff : public QObject
 {

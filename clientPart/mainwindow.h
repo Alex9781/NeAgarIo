@@ -6,6 +6,7 @@
 #include "clientStuff.h"
 #include "reg_window.h"
 #include "settings.h"
+#include <QProcess>
 
 namespace Ui { class MainWindow; }
 

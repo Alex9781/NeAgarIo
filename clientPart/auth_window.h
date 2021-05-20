@@ -2,8 +2,6 @@
 #define AUTH_WINDOW_H
 
 #include <QWidget>
-#include <QMessageBox>
-#include "settings.h"
 
 namespace Ui {
 class auth_window;
@@ -19,10 +17,10 @@ public:
     QString getLogin();
     QString getPass();
 
+
 signals:
     void login_button_clicked();
     void register_button_clicked();
-
 
 private slots:
     void on_lineEdit_textEdited(const QString &arg1);
@@ -48,7 +46,6 @@ private:
     QString m_username;
     QString m_userpass;
     friend class mainwindow;
-    settings *set;
 
 };
 

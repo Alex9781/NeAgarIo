@@ -13,99 +13,68 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>40</y>
-     <width>441</width>
-     <height>33</height>
+     <x>90</x>
+     <y>80</y>
+     <width>193</width>
+     <height>258</height>
     </rect>
    </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Окно регестрации&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-   <property name="textFormat">
-    <enum>Qt::AutoText</enum>
-   </property>
-  </widget>
-  <widget class="QWidget" name="formLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>100</y>
-     <width>291</width>
-     <height>81</height>
-    </rect>
-   </property>
-   <layout class="QFormLayout" name="formLayout">
-    <item row="0" column="0">
-     <widget class="QLabel" name="label_Confirm">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="13" column="0">
+     <widget class="QPushButton" name="registerPushButton">
       <property name="text">
-       <string>Login</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="login"/>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_Name">
-      <property name="text">
-       <string>Password</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="password">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="echoMode">
-       <enum>QLineEdit::Password</enum>
+       <string>Sign up</string>
       </property>
      </widget>
     </item>
     <item row="2" column="0">
-     <widget class="QLabel" name="label_Pass">
+     <widget class="QLineEdit" name="nameLineEdit"/>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="label_Name">
       <property name="text">
-       <string>Conifirm password</string>
+       <string>password</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QLineEdit" name="conifirm">
-      <property name="inputMask">
-       <string/>
-      </property>
-      <property name="echoMode">
-       <enum>QLineEdit::Password</enum>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_Confirm">
+      <property name="text">
+       <string>login</string>
       </property>
      </widget>
     </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>180</y>
-     <width>252</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
-    <item>
+    <item row="14" column="0">
      <widget class="QPushButton" name="back">
       <property name="text">
-       <string>Back</string>
+       <string>PushButton</string>
       </property>
      </widget>
     </item>
-    <item>
-     <widget class="QPushButton" name="registerPushButton">
+    <item row="6" column="0">
+     <widget class="QLineEdit" name="passwordLineEdit"/>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label">
       <property name="text">
-       <string>Sign up</string>
+       <string>Зрегайте ссейчас</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="0">
+     <widget class="QLabel" name="label_Pass">
+      <property name="text">
+       <string>set login again</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="0">
+     <widget class="QLineEdit" name="confirmLineEdit">
+      <property name="inputMask">
+       <string/>
       </property>
      </widget>
     </item>
