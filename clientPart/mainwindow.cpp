@@ -45,12 +45,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 void MainWindow::startgame()
 {
      qDebug() << "start game ";
-     startgameWithSkinAndName(Set.getName(),Set.getSkin());
+     startgameWithSkinAndName(Set.getName(),Set.getLogin());
 }
-void MainWindow::startgameWithSkinAndName(QString name,QString skin)
+void MainWindow::startgameWithSkinAndName(QString name,QString login)
 {
-    //TODO
-    //start game
+    QStringList p={name,login};
+    qDebug() << "start game ";
+    QProcess::startDetached("../123/NeAgario.exe", p);
 }
 
 
@@ -171,7 +172,7 @@ void MainWindow::gotError(QAbstractSocket::SocketError err)
 
 void MainWindow::on_pushButton_connect_clicked()
 {
-
+//    client->connect2host();
 }
 
 void MainWindow::on_pushButton_send_clicked()
