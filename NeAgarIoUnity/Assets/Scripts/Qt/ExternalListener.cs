@@ -13,6 +13,7 @@ public class ExternalListener : MonoBehaviour
         string[] args = System.Environment.GetCommandLineArgs();
         PlayerName = args[0];
         PlayerLogin = args[1];
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 
     public static void SendResults(string results)
