@@ -1,12 +1,11 @@
 using UnityEngine;
 using Mirror;
 
-[RequireComponent(typeof(Collider2D))]
 public class FoodSpawner : NetworkBehaviour
 {
     [SerializeField] private GameObject Food;
+    [SerializeField] private GameObject Foods;
     [SerializeField] private int FoodCount;
-    [SerializeField] private Color[] Colors;
 
     private Vector2 SpawnRadius = GameGlobalSettings.GameField;
 
@@ -14,12 +13,26 @@ public class FoodSpawner : NetworkBehaviour
     {
         for (int i = 0; i < FoodCount; i++)
         {
-            Vector2 spawnPoint = new Vector2(
+            Spawn();
+        }
+    }
+
+    public void SpawnFoodOnEat()
+    {
+        Spawn();
+    }
+
+    private void Spawn()
+    {
+        if (!isServer) { return; }
+
+        Vector2 spawnPoint = new Vector2(
                 Random.Range(-SpawnRadius.x, SpawnRadius.x),
                 Random.Range(-SpawnRadius.y, SpawnRadius.y));
 
-            GameObject spawned = Instantiate(Food, spawnPoint, Quaternion.identity);
-            spawned.GetComponent<SpriteRenderer>().color = Colors[Random.Range(0, Colors.Length)];
-        }
+        GameObject spawned = Instantiate(Food, spawnPoint, Quaternion.identity);
+        spawned.gameObject.transform.parent = Foods.transform;
+
+        NetworkServer.Spawn(spawned);
     }
 }
