@@ -2,10 +2,22 @@ using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
 
+/// <summary>
+/// Класс, необходимый для связи с сервером и клиентом на Qt.
+/// </summary>
 public class ExternalListener : MonoBehaviour
 {
+    /// <summary>
+    /// Tcp Клиент для связи с сервером.
+    /// </summary>
     public static TcpClient tcpClient;
+    /// <summary>
+    /// Логин игрока для отправки результатов в базу данных.
+    /// </summary>
     public static string PlayerLogin;
+    /// <summary>
+    /// Отображаемое имя игрока.
+    /// </summary>
     public static string PlayerName;
 
     private void Start()
@@ -16,6 +28,10 @@ public class ExternalListener : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 
+    /// <summary>
+    /// Отправка результатов на сервер.
+    /// </summary>
+    /// <param name="results">Вес игрока в момент смерти.</param>
     public static void SendResults(string results)
     {
         tcpClient = new TcpClient();
