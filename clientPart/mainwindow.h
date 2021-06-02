@@ -32,13 +32,12 @@ public slots:
 private slots:
     void authorizeUser();
     void back_to_auth();
-   void startgame();
+    void startgame();
     void reg();
     void go_to_reg();
     void on_pushButton_send_clicked();
     void on_pushButton_connect_clicked();
     void on_pushButton_disconnect_clicked();
-
 private:
     auth_window ui_Auth;
     reg_window ui_Reg;

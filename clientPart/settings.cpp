@@ -13,11 +13,6 @@ settings::~settings()
     delete ui;
 }
 
-QString settings::getLogin()
-{
-    auth_window p;
-    return p.getLogin();
-}
 
 QString settings::getName()
 {
@@ -33,5 +28,3 @@ void settings::on_lineName_textEdited(const QString &arg1)
 {
     m_userName = arg1;
 }
-
-

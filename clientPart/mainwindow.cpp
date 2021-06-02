@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     ui->pushButton_disconnect->setVisible(false);
 
-    client = new ClientStuff("localhost", 6547);
+    client = new ClientStuff("26.197.4.170", 6547);
 
     setStatus(client->getStatus());
 
@@ -45,13 +45,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 void MainWindow::startgame()
 {
      qDebug() << "start game ";
-     startgameWithSkinAndName(Set.getName(),Set.getLogin());
+     startgameWithSkinAndName(Set.getName(),ui_Auth.getLogin());
 }
 void MainWindow::startgameWithSkinAndName(QString name,QString login)
 {
     QStringList p={name,login};
     qDebug() << "start game ";
-    QProcess::startDetached("../123/NeAgario.exe", p);
+    QProcess::startDetached("C:/Users/User/Desktop/44444/NeAgarIo.exe", p);
 }
 
 
@@ -62,6 +62,7 @@ void MainWindow::back_to_auth()
 }
 void MainWindow::reg()
 {
+
     QByteArray arrBlock;
     QDataStream out(&arrBlock, QIODevice::WriteOnly);
 
@@ -71,12 +72,15 @@ void MainWindow::reg()
     out << quint16(arrBlock.size() - sizeof(quint16));
     client->tcpSocket->write(arrBlock);
 
+
 }
 void MainWindow::go_to_reg()
 {
     ui_Auth.hide();
     ui_Reg.show();
 }
+
+
 void MainWindow::authorizeUser()
 {
 
@@ -131,8 +135,9 @@ void MainWindow::receivedSomething(QString msg)
         setGameSettings();
     }
     if(msg == "successfull registraion user"){
-        ui_Reg.hide();
-        setGameSettings();
+        //ui_Reg.hide();
+        //setGameSettings();
+        back_to_auth();
     }
 
 

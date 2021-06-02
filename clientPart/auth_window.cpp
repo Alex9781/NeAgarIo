@@ -43,5 +43,3 @@ void auth_window::on_registerPushButton_2_clicked()
 
     emit register_button_clicked();
 }
-
-

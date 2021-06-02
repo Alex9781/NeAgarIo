@@ -1,14 +1,14 @@
 #include "clientStuff.h"
 
 ClientStuff::ClientStuff(
-        const QString hostAddress,
+         QString hostAddress,
         int portNumber,
         QObject *parent
         ) : QObject(parent), m_nNextBlockSize(0)
 {
     status = false;
 
-    host = hostAddress;
+    host = "26.197.4.170";
     port = portNumber;
 
     tcpSocket = new QTcpSocket(this);
