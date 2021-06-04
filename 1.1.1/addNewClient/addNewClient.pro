@@ -1,0 +1,16 @@
+QT += testlib
+QT += sql
+QT += network
+QT -= gui
+
+CONFIG += qt console warn_on depend_includepath testcase
+CONFIG -= app_bundle
+
+TEMPLATE = app
+
+SOURCES +=  \
+            tst_tests1.cpp\
+            serverStuff.cpp
+
+HEADERS += \
+            serverStuff.h
