@@ -7,6 +7,7 @@
 #include "reg_window.h"
 #include "settings.h"
 #include <QProcess>
+#include <QMessageBox>
 
 namespace Ui { class MainWindow; }
 

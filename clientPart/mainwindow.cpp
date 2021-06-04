@@ -139,6 +139,10 @@ void MainWindow::receivedSomething(QString msg)
         //setGameSettings();
         back_to_auth();
     }
+    if (msg == "not successfull registraion user")
+    {
+        QMessageBox::warning(this, "Внимание","такой логин уже есть");
+    }
 
 
 }
