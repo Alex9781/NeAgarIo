@@ -192,7 +192,7 @@ public class Player : NetworkBehaviour
                 if (collision.TryGetComponent(out Food _))
                 {
                     FoodSpawner f = FindObjectOfType<FoodSpawner>();
-                    f.SpawnFood();
+                    f.SpawnFood(1);
                 }
             }
         }

@@ -37,13 +37,27 @@ public class FoodSpawner : NetworkBehaviour
     }
 
     /// <summary>
-    /// Метод спавнит одну еду на сцене.
+    /// Метод спавнит еду на сцене.
     /// </summary>
-    public void SpawnFood()
+    /// <param name="count">Количество</param>
+    /// <returns>Заспавнилась ли еда?</returns>
+    public bool SpawnFood(int count)
     {
-        Spawn();
+        try
+        {
+            for (int i = 0; i < count; i++)
+            {
+                Spawn();
+            }
+            return true;
+        }
+        catch (System.Exception)
+        {
+            return false;
+        }
+
     }
-    
+
     /// <summary>
     /// Приватный метод для спавна еды.
     /// </summary>
