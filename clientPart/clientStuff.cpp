@@ -44,7 +44,10 @@ void ClientStuff::connected()
     emit statusChanged(status);
 }
 
-bool ClientStuff::getStatus() {return status;}
+bool ClientStuff::getStatus()
+{
+    return status;
+}
 
 void ClientStuff::readyRead()
 {
